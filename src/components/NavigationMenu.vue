@@ -33,8 +33,8 @@ nav ul {
 }
 nav ul li {
   margin-right: 15px;
-}
-li {
   list-style: none;
+  
 }
+
 </style>

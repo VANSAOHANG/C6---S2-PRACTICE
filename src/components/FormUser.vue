@@ -1,15 +1,36 @@
 <template>
-  <form>
-    <input type="text" placeholder="First Name" /> <br />
-    <input type="text" placeholder="Last Name" /> <br />
-    <input type="text" placeholder="Comment" /> <br />
+  <form @submit.prevent="addName">
+    <input type="text" placeholder="First Name" v-model="firstName" /> <br />
+    <input type="text" placeholder="Last Name" v-model="lastName" /> <br />
+    <input type="email" placeholder="Email" v-model="email" /> <br />
+    <br />
 
-    <button>ADD</button>
+    <button type="submit">ADD USER</button>
   </form>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "friemd-form",
+  emits: ["add-data"],
+  data() {
+    return {
+      firstName: "",
+      lastName: "",
+      email: "",
+    };
+  },
+  methods: {
+    addName() {
+      if (this.firstName != "" && this.lastName != "" && this.email != "") {
+        this.$emit("add-data", this.firstName, this.lastName, this.email);
+        this.firstName = "";
+        this.lastName = "";
+        this.email = "";
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -33,8 +54,9 @@ form button {
   width: 100%;
   padding: 8px;
   border: none;
-  background: #a24250;
+  background: #1165bd;
   border-radius: 3px;
   margin-bottom: 10px;
+  color: #fff;
 }
 </style>
